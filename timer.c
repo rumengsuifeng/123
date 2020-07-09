@@ -1,19 +1,3 @@
-#include <linux/module.h>
-#include <linux/timer.h>
-
-struct timer_list timer;
-
-void timer_main(unsigned long data)
-{
-    printk("hello %ld\n", data);        //定时时间到了
-
-    mod_timer(&timer, jiffies + 200);  //如果没有该语句，那么定时器函数只执行一遍就结束了,如果有了该条语句，那么
-                                           //当第一次定时时间到后会来执行定时器函数,打印一句话之后又会检测定时时间是否
-                                           //到了,到的话，就再次执行定时器函数,以此类推，类似于C中的递归了
-}
-
-static int __init th_init(void)         //insmod 命令的调用函数
-{
 
     printk(" th_init --------->\n");
 
